@@ -1,9 +1,11 @@
 package baseball.view;
 
+import baseball.constant.BaseballNumber;
+
 public class OutputView {
 
     private static final String START_MESSAGE = "숫자 야구 게임을 시작합니다.";
-    private static final String WIN_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"; //TODO: 매직넘버를 어떻게 받아올지 고려 필요
+    private static final String WIN_MESSAGE = "%s개의 숫자를 모두 맞히셨습니다! 게임 종료%n";
     private static final String END_MESSAGE = "게임이 종료되었습니다.";
 
     public static void printStart() {
@@ -11,7 +13,7 @@ public class OutputView {
     }
 
     public static void printWin() {
-        System.out.println(WIN_MESSAGE);
+        System.out.printf(WIN_MESSAGE, BaseballNumber.LENGTH.getNumber());
     }
 
     public static void printEnd() {
