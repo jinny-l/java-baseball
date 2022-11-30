@@ -7,9 +7,9 @@ public enum ErrorMessage {
     NOT_VALID_NUMBER_LENGTH(String.format(
             "숫자는 %s개만 입력 가능합니다.",
             BaseballNumber.LENGTH.getNumber())),
-    NUMBER_CONTAINS_ZERO(String.format(
+    NUMBER_CONTAINS_BANNED_NUMBER(String.format(
             "%s은 입력할 수 없습니다.",
-            BaseballNumber.NOT_CONTAINS_ZERO.getNumber())),
+            BaseballNumber.BANNED_NUMBER.getNumber())),
     NOT_UNIQUE_NUMBER("중복된 숫자는 입력할 수 없습니다."),
     NOT_VALID_GAME_COMMAND(String.format(
             "%s 또는 %s만 입력 가능합니다.",

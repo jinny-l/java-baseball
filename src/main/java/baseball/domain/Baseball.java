@@ -14,7 +14,7 @@ public class Baseball {
 
     public Baseball(List<Integer> baseball) {
         validateLength(baseball);
-        validateNotContainsZero(baseball);
+        validateNumber(baseball);
         validateUnique(baseball);
         this.baseball = baseball;
     }
@@ -25,9 +25,9 @@ public class Baseball {
         }
     }
 
-    public void validateNotContainsZero(List<Integer> baseball) {
-        if (baseball.contains(BaseballNumber.NOT_CONTAINS_ZERO.getNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_CONTAINS_ZERO.getMessage());
+    public void validateNumber(List<Integer> baseball) {
+        if (baseball.contains(BaseballNumber.BANNED_NUMBER.getNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_CONTAINS_BANNED_NUMBER.getMessage());
         }
     }
 
