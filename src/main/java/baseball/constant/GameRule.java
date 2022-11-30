@@ -1,5 +1,8 @@
 package baseball.constant;
 
+/**
+ * 게임 룰을 관리하는 클래스
+ */
 public enum GameRule {
 
     STRIKE("스트라이크"),

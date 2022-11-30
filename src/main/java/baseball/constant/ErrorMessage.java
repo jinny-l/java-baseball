@@ -1,5 +1,9 @@
 package baseball.constant;
 
+/**
+ * 에러 메시지를 관리하는 클래스
+ */
+
 public enum ErrorMessage {
 
     INPUT_IS_EMPTY("입력 값이 없습니다."),
@@ -15,6 +19,7 @@ public enum ErrorMessage {
             "%s 또는 %s만 입력 가능합니다.",
             GameCommand.RETRY.getGameCommand(),
             GameCommand.QUIT.getGameCommand()));
+
     private static final String END_MESSAGE = " 게임이 종료됩니다.";
 
     private final String message;
