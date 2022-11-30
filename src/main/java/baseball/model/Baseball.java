@@ -37,10 +37,10 @@ public class Baseball {
         if (sameCount == ZERO) {
             return NOTHING;
         }
-        if (strikeCount == 0) {
-            return strikeCount + BALL;
+        if (strikeCount == ZERO) {
+            return ballCount + BALL;
         }
-        if (ballCount == 0) {
+        if (ballCount == ZERO) {
             return strikeCount + STRIKE;
         }
         return ballCount + BALL + " " + strikeCount + STRIKE;
@@ -62,7 +62,7 @@ public class Baseball {
 
     private int countSame(Baseball compare) {
         List<Integer> count = new ArrayList<>(baseball);
-        count.removeAll(compare.getBaseball());
+        count.retainAll(compare.getBaseball());
         return count.size();
     }
 
