@@ -1,6 +1,9 @@
 package baseball.view;
 
+import baseball.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -8,11 +11,17 @@ public class InputView {
     private static final String INPUT_RETRY_OR_QUIT_MESSAGE = "게임을 새로 시작하려면 %d, 종료하려면 %d를 입력하세요.%n";
 
     /**
-     * 숫자를 입력받을 때 사용하는 메서드
+     * 야구 숫자를 입력받을 때 사용하는 메서드
      */
-    public static String readNumber() {
+    public static List<Integer> readNumber() {
         System.out.print(INPUT_NUMBER_MESSAGE);
-        return input();
+        try {
+            return input().codePoints()
+                    .mapToObj(Character::getNumericValue)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException ne) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_NUMBER_TYPE.getMessage());
+        }
     }
 
     /**
@@ -21,9 +30,25 @@ public class InputView {
      * @param quit : 종료 command
      * @return game command
      */
-    public static String readRetry(int retry, int quit) {
+    public static int readRetry(int retry, int quit) {
         System.out.printf(INPUT_RETRY_OR_QUIT_MESSAGE, retry, quit);
-        return input();
+        int input = validateInteger(input());
+        validateGameCommand(input, retry, quit);
+        return input;
+    }
+
+    private static int validateInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException ne) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getMessage());
+        }
+    }
+
+    private static void validateGameCommand(int input, int retry, int quit) {
+        if (input != retry || input != quit) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_GAME_COMMAND.getMessage());
+        }
     }
 
     /**
@@ -38,7 +63,7 @@ public class InputView {
 
     private static void validateHasInput(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getMessage());
         }
     }
 
